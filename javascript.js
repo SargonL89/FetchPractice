@@ -47,3 +47,32 @@ function encerarPulir() {
         console.log(typeof cardsOut)
         })
 }
+
+
+function request() {
+    fetch('https://randomuser.me/api/')
+    .then(Response => Response.json())
+    .then(data => filterUsers(data))
+}
+
+function filterUsers(user) {
+    const btn3 = document.querySelector('.btn3');
+    const div =  document.querySelector('.div1');
+
+    if (user.results[0].gender === 'female') { 
+        btn3.addEventListener('click', () => {
+            div.innerHTML = `
+            <ul><img src="${user.results[0].picture.large}" alt="userPicture"></ul>
+            <ul>Name: ${user.results[0].name.first}</ul>
+            <ul>Last name: ${user.results[0].name.last}</ul>
+            <ul>Gender: ${user.results[0].gender}</ul>            
+            <ul>Email: ${user.results[0].email}</ul>
+            <ul>Cell phone number: ${user.results[0].cell}</ul>
+            `
+        })
+    }
+    else {request()};
+    limpiar()
+}
+
+request();
