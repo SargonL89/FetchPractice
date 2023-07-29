@@ -7,14 +7,14 @@ function verGrapCards() {
             .then(Response => Response.json())
             .then(data => 
                 data.forEach(placa => {
-                    div.innerHTML += `
-                    <ul>"id": "${placa.id}"</ul>
-                    <ul>"fabricante": "${placa.fabricante}", </ul>
-                    <ul>"marca": "${placa.marca}", </ul>
-                    <ul>"modelo": "${placa.modelo}", </ul>
-                    <ul>"memoria": "${placa.memoria}", </ul>
-                    <ul>"precio": ${placa.precio}</ul>
-                    `
+                    div.innerHTML += `<ul>
+                    <li>id: ${placa.id}</li>
+                    <li>fabricante: ${placa.fabricante}</li>
+                    <li>marca: ${placa.marca}</li>
+                    <li>modelo: ${placa.modelo}</li>
+                    <li>memoria: ${placa.memoria}</li>
+                    <li>precio: ${placa.precio}</li>
+                    </ul>`
                 })
             )
             .then(limpiar())
