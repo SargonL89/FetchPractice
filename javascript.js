@@ -19,7 +19,7 @@ function verGrapCards() {
             )
             .then(limpiar())
             .catch(error => {
-                console.error("Estás mandando fruta!", error)
+                console.error("Error al obtener los datos", error)
             })
     })
 }
@@ -36,8 +36,8 @@ function limpiar() {
 verGrapCards()
 
 
-function encerarPulir() {
-    fetch('https://64b93c8879b7c9def6c0ca35.mockapi.io/graphic-cards')
+async function encerarPulir() {
+    await fetch('https://64b93c8879b7c9def6c0ca35.mockapi.io/graphic-cards')
     .then(Response => Response.json())
     .then(data => {
         console.log(typeof data);
@@ -46,13 +46,17 @@ function encerarPulir() {
         const cardsOut = JSON.parse(cardsIn);
         console.log(typeof cardsOut)
         })
+    .catch(error => {
+        console.error("Error! estás haciendo cualquiera!", error)
+    })
 }
 
 
-function request() {
-    fetch('https://randomuser.me/api/')
+async function request() {
+    await fetch('https://randomuser.me/api/')
     .then(Response => Response.json())
     .then(data => filterUsers(data))
+    .catch(error => {console.error("Error al cargar los datos", error)})
 }
 
 function filterUsers(user) {
@@ -76,3 +80,28 @@ function filterUsers(user) {
 }
 
 request();
+
+function inputCity() {
+    const btn4 = document.querySelector('.btn4');
+
+    btn4.addEventListener('click', async () => {
+        const input1 = document.querySelector('.input1').value;
+        await fetch(`http://api.weatherapi.com/v1/current.json?key=c9c4c2c89746407589f161742232907&q=${input1}&aqi=no`)
+        .then(Response => Response.json())
+        .then(data => mostrarClima(data))
+        .catch(error => {console.error("Error al recibir los datos de la API", error)})
+    })
+}
+
+function weather(data) {
+    const div = document.querySelector('.div1');
+
+    div.innerHTML = `
+        <ul>${data.location.name}</ul>
+        <ul>Last name: ${data.location.region}</ul>
+        <ul>Gender: ${data.location.country}</ul>            
+        <ul>Email: ${data.location.localtime}</ul>
+        `
+}
+
+inputCity()
