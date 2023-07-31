@@ -84,9 +84,9 @@ request();
 function inputCity() {
     const btn4 = document.querySelector('.btn4');
 
-    btn4.addEventListener('click', () => {
+    btn4.addEventListener('click', async () => {
         const input1 = document.querySelector('.input1').value;
-        fetch(`http://api.weatherapi.com/v1/current.json?key=c9c4c2c89746407589f161742232907&q=${input1}&aqi=no`)
+        await fetch(`http://api.weatherapi.com/v1/current.json?key=c9c4c2c89746407589f161742232907&q=${input1}&aqi=no`)
         .then(Response => Response.json())
         .then(data => weather(data))
         .catch(error => {console.error("Error al recibir los datos de la API", error)})
