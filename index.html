@@ -16,9 +16,7 @@
         <p>Ver datos del clima actual para:</p>
         <input type="text" class="input1" placeholder="Ciudad/Provincia/País" required><button class="btn4">Ver datos</button>
     </div>
-    <div class="div1"></div>
 
-    <form id="">
         <div>
           <label for="nombre">Nombre:</label>
           <input type="text" id="nombre" required>
@@ -32,12 +30,14 @@
           <textarea name="mensaje" id="mensaje" cols="40" rows="10" maxlength="200" required></textarea>
         </div>
         <div>
-          <button type="submit">Enviar datos</button>
+          <button type="button" id="submit">Enviar datos</button>
+          <button type="button" id="verData">Ver datos</button>
         </div>
-    </form>
-    
 
-    
+
+        <div class="div1"></div>
+
+
 
     <!-- Ejercicio 1: Obtener datos de una API pública
     Realiza una solicitud con fetch a una API pública que devuelva datos en formato JSON. Puedes usar la API de "Random User Generator" (https://randomuser.me/) para obtener información de usuarios aleatorios. Luego, muestra algunos datos relevantes en la página, como nombres, correos electrónicos o imágenes de los usuarios obtenidos.

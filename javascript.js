@@ -114,3 +114,46 @@ function weather(data) {
 }
 
 inputCity()
+
+
+function Solicitud(nombre, email, mensaje) {
+    this.nombre = nombre;
+    this.email = email;
+    this.mensaje = mensaje;
+    // console.log(`${nombre} y ${email} y ${mensaje}`)
+}
+
+function procesarDatos() {
+    const btn = document.getElementById("submit");
+
+    btn.addEventListener('click', () => {
+        const nombre = document.getElementById("nombre").value;
+        const email = document.getElementById("email").value;
+        const mensaje = document.getElementById("mensaje").value;
+    
+        const solicitud = new Solicitud(nombre, email, mensaje);
+        const inJSON = JSON.stringify(solicitud);
+        localStorage.setItem('nuevoMensaje', inJSON);
+    })
+}
+
+procesarDatos()
+
+function verLocalStorage() {
+    const div = document.querySelector('.div1');
+    const btn = document.getElementById("verData");
+    
+    btn.addEventListener('click', () => {
+        const localS = localStorage.getItem('nuevoMensaje');
+        const data = JSON.parse(localS);
+
+        console.log(data)
+        div.innerHTML = `
+            <ul>Nombre: ${data.nombre}</ul>
+            <ul>Email: ${data.email}</ul>
+            <ul>Mensaje: ${data.mensaje}</ul>
+            `
+    })
+}
+
+verLocalStorage()
